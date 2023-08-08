@@ -1,98 +1,113 @@
-export default {
-    title: '码路芽子1111', // 博客的标题
-    description: 'mlyz 的个人博客', // 博客的介绍
-    base: '/myblog/', // 如果想用 https://mlyz.wdy.github.io/blog/ 访问，那么这句话必填
-    themeConfig: {
-        logo: "/images/logo.png", // 页面上显示的logo
-        nav: [ // 页面右上角的导航
-            { text: "vue", link: "/articles/vue/上传素材到COS" },
-            { text: "uniapp", link: "/articles/uniapp/一键登录" },
+module.exports = {
+    // 网站标题
+    title: 'Interview',
+    // 网站描述
+    description: 'Interview with vitePress',
+    // 打包目录
+    dest: './dist',
+    base: '/myblog/',
+    // 头部head
+    head: [
+        // 添加图标
+        ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ],
+    // 使用插件
+    plugins: [
+        '@vuepress/active-header-links',
+        '@vuepress/back-to-top',
+        '@vuepress/medium-zoom',
+        '@vuepress/nprogress',
+        [
+            '@vuepress/plugin-search',
             {
-                text: '博客文档',
-                items: [ // 可以配置成下拉
-                    { text: 'JavaScript 核心系列', link: '/articles/javaScript-core/构造函数、原型、原型链' },
-                    { text: 'Vue 三方组件库', link: '/articles/libs/VForm3低代码初体验' },
-                    { text: '其他', link: '/articles/other/nvm管理node' },
-                ]
-            }
+                locales: {
+                    '/': {
+                        placeholder: 'Search',
+                    },
+                    '/zh/': {
+                        placeholder: '搜索',
+                    },
+                },
+            },
         ],
-        sidebar: { // 侧边栏，可以分组
-            "/articles/vue/": [
-                {
-                    text: "基础",
-                    items: [
-                    ],
-                },
-                {
-                    text: "代码段",
-                    items: [
-                        {
-                            text: "上传素材到COS",
-                            link: "/articles/vue/上传素材到COS",
-                        },
-                        {
-                            text: "文件下载",
-                            link: "/articles/vue/文件下载",
-                        },
-                    ],
-                },
-            ],
-            "/articles/uniapp/": [
-                {
-                    text: "基础",
-                    items: [
-                    ],
-                },
-                {
-                    text: "代码段",
-                    items: [
-                        {
-                            text: "一键登录",
-                            link: "/articles/uniapp/一键登录",
-                        }
-                    ],
-                },
-            ],
-            "/articles/javaScript-core/": [
-                {
-                    text: "基础",
-                    items: [
-                        {
-                            text: "1. 构造函数、原型、原型链",
-                            link: "/articles/javaScript-core/构造函数、原型、原型链",
-                        },
-                        {
-                            text: "2. 执行上下文和执行上下文栈",
-                            link: "/articles/javaScript-core/执行上下文和执行上下文栈",
-                        },
-                        {
-                            text: "3. this的指向",
-                            link: "/articles/javaScript-core/this的指向",
-                        },
-                    ],
-                },
-                {
-                    text: "进阶",
-                    items: [
-                        {
-                            text: "xx",
-                            link: "/xx",
-                        },
-                    ],
-                },
-            ],
-            "/articles/libs/": [
-                {
-                    items: [
-                        {
-                            text: "1. VForm3低代码初体验",
-                            link: "/articles/libs/VForm3低代码初体验",
-                        },
-                    ],
-                }
-            ],
-        },
-        socialLinks: [{ icon: "github", link: "https://github.com/mlyz-wdy" }], // 可以连接到 github
-    },
+    ],
+    // 主题配置
+    themeConfig: {
+        // 获取每个文件最后一次 git 提交的 UNIX 时间戳(ms)，同时它将以合适的日期格式显示在每一页的底部
+        // lastUpdated: 'Last Updated', // string | boolean
+        // 启动页面丝滑滚动
+        smoothScroll: true,
+        // 导航栏配置
+        nav: [
+            { text: '我的个人网站', link: 'https://www.cooldream.fun/home' },
+            { text: '掘金', link: 'https://juejin.cn/user/1855631359481847/posts' },
+            { text: 'Github', link: 'https://github.com/Jack-Star-T' }
+        ],
+        sidebar: {
+            '/': getSidebar()
+        }
+    }
 }
 
+function getSidebar() {
+    return [
+        {
+            text: 'HTML',
+            children: [
+                { text: '基础', link: '/HTML/' },
+                { text: '进阶', link: '/HTML/advanced' },
+            ],
+            sidebarDepth: 3
+        },
+        {
+            text: 'CSS',
+            children: [
+                { text: '基础', link: '/CSS/' },
+                { text: '进阶', link: '/CSS/advanced' },
+            ]
+        },
+        {
+            text: 'Javascript',
+            children: [
+                { text: '基础', link: '/Javascript/' },
+                { text: '进阶', link: '/Javascript/advanced' },
+                { text: '进阶', link: '/Javascript/nightmare' },
+            ]
+        },
+        {
+            text: 'Vue',
+            children: [
+                { text: '基础', link: '/Vue/' },
+                { text: '进阶', link: '/Vue/advanced' },
+            ]
+        },
+        {
+            text: '浏览器',
+            children: [
+                { text: '基础', link: '/Vue/' },
+                { text: '进阶', link: '/Vue/advanced' },
+            ]
+        },
+        {
+            text: '网络',
+            children: [
+                { text: '基础', link: '/Network/' },
+                { text: '进阶', link: '/Network/advanced' },
+            ]
+        },
+        {
+            text: '安全',
+            children: [
+                { text: '基础', link: '/Security/' },
+                { text: '进阶', link: '/Security/advanced' },
+            ]
+        },
+        {
+            text: '面经',
+            children: [
+                { text: '基础', link: '/Experience/' },
+                { text: '进阶', link: '/Experience/advanced' },
+            ]
+        },
+    ]
+}
